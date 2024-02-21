@@ -1,0 +1,21 @@
+name: Test
+
+on:
+  push:
+    branches: [main, Release**]
+   
+  workflow_dispatch:
+
+jobs:
+  changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+      - name: get version
+        run: |
+            echo "run_number ${{ github.run_number }}" 
+            echo "ref_name ${{ github.ref_name }}" 
+            echo "ref ${{ github.ref }}" 
+            echo "head_ref ${{ github.head_ref }}" 
+            echo "base_ref ${{ github.base_ref }}" 
