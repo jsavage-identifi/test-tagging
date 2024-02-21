@@ -15,7 +15,9 @@ jobs:
       - name: get version
         run: |
             echo "run_number ${{ github.run_number }}" 
-            echo "ref_name ${{ github.ref_name }}" 
-            echo "ref ${{ github.ref }}" 
-            echo "head_ref ${{ github.head_ref }}" 
-            echo "base_ref ${{ github.base_ref }}" 
+            echo "version=${{ github.ref_name }}" | sed -r 's/[Release-]+//g' >> $GITHUB_ENV
+      - name: echo version
+        run: |
+            echo "version=${{ env.version }}"
+
+            
